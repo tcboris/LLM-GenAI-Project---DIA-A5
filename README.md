@@ -31,6 +31,7 @@ This application consists of two main components:
 
 - **Automatic Document Classification**: Detects whether an image is an invoice or wine label
 - **Structured Data Extraction**: Extracts relevant fields and organizes them in JSON format
+- **Batch Processing**: Upload and process multiple documents simultaneously
 - **Multi-language OCR Support**: Supports English and French text recognition
 - **Real-time Processing**: Fast analysis with progress indicators
 - **Export Functionality**: Download extracted data as JSON
@@ -262,13 +263,44 @@ Ensure both the backend and frontend are running:
 
 ### Step 3: Upload an Image
 
+#### Single File Mode
+
 1. Click the **Scanner** (🔍) icon
 2. Either:
    - Drag and drop an image (invoice or wine label)
    - Click **Choose File** to browse your files
 3. Supported formats: JPG, PNG, WEBP
 
+#### Batch Processing Mode
+
+For processing multiple documents at once:
+
+1. Click the **Batch** (📁) icon in the navigation
+2. Upload multiple files:
+   - Drag and drop multiple images into the drop zone
+   - Or click to select multiple files from your computer
+3. The application will:
+   - Process each file sequentially
+   - Display real-time progress for each document
+   - Show results in a table format
+4. Each row in the results table displays:
+   - ✅ **File name** with status indicator
+   - 📊 **Formatted result** (invoice or wine data)
+   - 💾 **Download JSON** button for individual file results
+5. At the bottom, view a summary:
+   - Total files processed
+   - Number of successful extractions
+   - Number of errors
+
+**Batch Mode Benefits:**
+- Process invoices from an entire month at once
+- Bulk digitization of wine cellar inventory
+- No need to wait for each file - upload all and let it run
+- Individual JSON exports for integration with other systems
+
 ### Step 4: View Results
+
+#### Single File Mode
 
 After processing (typically 2-5 seconds), you'll see:
 
@@ -276,12 +308,32 @@ After processing (typically 2-5 seconds), you'll see:
 - Extracted data in a clean, formatted layout
 - A **Download JSON** button to export the raw data
 
+#### Batch Mode
+
+Processing time varies based on the number of files. The interface shows:
+
+- **Real-time status** for each file (pending, processing, success, error)
+- **Table view** with file names and formatted results
+- **Individual download buttons** for each successfully processed file
+- **Summary statistics** at the bottom
+
 #### Invoice Data Display
 
 For invoices, the application extracts:
-- Vendor name and details (SIRET, VAT, address, contact info)
-- Invoice number and date
-- Total amount
+- **Vendor information**:
+  - Name
+  - SIRET number
+  - VAT identification (TVA Intra)
+  - Full address
+  - Phone number
+  - Email
+  - Website
+- **Invoice details**:
+  - Invoice number
+  - Date
+  - Total amount (TTC)
+  - Amount excluding tax (HT)
+  - VAT amount
 - Any additional fields found in the document
 
 #### Wine Label Data Display
