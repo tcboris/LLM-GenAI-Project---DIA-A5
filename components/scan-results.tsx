@@ -261,7 +261,7 @@ export default function ScanResults({ data, imageUrl }: ScanResultsProps) {
           {imageUrl && (
             <div className="glass rounded-2xl p-4 flex-1">
               <div className="flex items-center gap-2 mb-3">
-                <ImageIcon className="w-5 h-5 text-accent" />
+                <ImageIcon className="w-5 h-5 text-primary" />
                 <h3 className="font-bold">Image analysée</h3>
               </div>
               <Image 
@@ -276,10 +276,10 @@ export default function ScanResults({ data, imageUrl }: ScanResultsProps) {
           )}
           
           <div className="glass rounded-2xl p-6 flex flex-col items-center justify-center min-w-48">
-            <Download className="w-8 h-8 text-accent mb-3" />
+            <Download className="w-8 h-8 text-primary mb-3" />
             <button
               onClick={downloadJSON}
-              className="px-6 py-3 bg-accent text-accent-foreground rounded-lg font-medium hover:bg-accent/90 transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] w-full"
+              className="px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-all duration-300 shadow-[0_0_20px_var(--glow-primary)] hover:shadow-[0_0_40px_var(--glow-primary)] w-full"
             >
               Télécharger JSON
             </button>
@@ -289,19 +289,19 @@ export default function ScanResults({ data, imageUrl }: ScanResultsProps) {
         <div className="glass rounded-2xl p-8">
           {/* En-tête Vin */}
           <div className="flex items-start gap-6 mb-8">
-            <div className="w-24 h-24 rounded-3xl bg-linear-to-br from-accent/30 to-accent/10 border-2 border-accent/50 flex items-center justify-center shrink-0 shadow-[0_0_40px_rgba(168,85,247,0.5)] animate-pulse-glow relative">
-              <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-xl"></div>
-              <Wine className="w-12 h-12 text-accent relative z-10" />
+            <div className="w-24 h-24 rounded-3xl bg-linear-to-br from-primary/30 to-primary/10 border-2 border-primary/50 flex items-center justify-center shrink-0 shadow-[0_0_40px_var(--glow-primary)] animate-pulse-glow relative">
+              <div className="absolute inset-0 rounded-3xl bg-primary/20 blur-xl"></div>
+              <Wine className="w-12 h-12 text-primary relative z-10" />
             </div>
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-3">
-                <span className="px-4 py-2 rounded-full bg-linear-to-r from-accent/20 to-accent/30 border-2 border-accent/50 text-accent text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(168,85,247,0.4)]">
+                <span className="px-4 py-2 rounded-full bg-linear-to-r from-primary/20 to-primary/30 border-2 border-primary/50 text-primary text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_var(--glow-primary)]">
                   🍷 Vin
                 </span>
               </div>
               <h2 className="text-3xl font-bold mb-2">{wine.nom || "Vin non identifié"}</h2>
               {wine.appellation && (
-                <div className="text-xl text-accent font-semibold mb-4">{wine.appellation}</div>
+                <div className="text-xl text-primary/80 font-semibold mb-4">{wine.appellation}</div>
               )}
               
               <div className="grid md:grid-cols-2 gap-4">
@@ -332,7 +332,7 @@ export default function ScanResults({ data, imageUrl }: ScanResultsProps) {
           {Object.keys(wine).filter(key => !["type", "nom", "millesime", "appellation", "degre_alcool"].includes(key)).length > 0 && (
             <div className="border-t border-border/30 pt-6">
               <h3 className="font-bold mb-4 flex items-center gap-2">
-                <Grape className="w-5 h-5 text-accent" />
+                <Grape className="w-5 h-5 text-primary" />
                 Détails complémentaires
               </h3>
               <div className="space-y-3">
