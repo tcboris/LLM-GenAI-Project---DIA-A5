@@ -3,11 +3,12 @@
 import { useState } from "react"
 import HomePage from "@/components/home-page"
 import ScannerPage from "@/components/scanner-page"
+import BatchScannerPage from "@/components/batch-scanner-page"
 import SettingsPage from "@/components/settings-page"
 import Navigation from "@/components/navigation"
 
 export default function Page() {
-  const [currentPage, setCurrentPage] = useState<"home" | "scan" | "settings">("home")
+  const [currentPage, setCurrentPage] = useState<"home" | "scan" | "batch" | "settings">("home")
 
   return (
     <div className="min-h-screen bg-background relative overflow-hidden">
@@ -25,8 +26,9 @@ export default function Page() {
 
         <main className="flex-1 transition-all duration-300 ease-in-out">
           <div className="opacity-100 animate-in fade-in duration-500">
-            {currentPage === "home" && <HomePage />}
+            {currentPage === "home" && <HomePage onNavigate={setCurrentPage} />}
             {currentPage === "scan" && <ScannerPage />}
+            {currentPage === "batch" && <BatchScannerPage />}
             {currentPage === "settings" && <SettingsPage />}
           </div>
         </main>

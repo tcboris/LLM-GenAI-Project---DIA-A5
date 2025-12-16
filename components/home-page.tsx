@@ -3,7 +3,11 @@
 import { ArrowRight, Upload, Sparkles, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export default function HomePage() {
+interface HomePageProps {
+  onNavigate: (page: "home" | "scan" | "batch" | "settings") => void
+}
+
+export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="container mx-auto px-6 py-12 md:py-20">
       {/* Hero Section */}
@@ -23,6 +27,7 @@ export default function HomePage() {
         </p>
 
         <Button
+          onClick={() => onNavigate('scan')}
           size="lg"
           className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_var(--glow-primary)] hover:shadow-[0_0_50px_var(--glow-primary)] transition-all duration-300 px-8 py-6 text-lg"
         >

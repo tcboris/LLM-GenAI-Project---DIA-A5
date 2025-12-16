@@ -1,17 +1,18 @@
 "use client"
 
-import { Home, ScanLine, Settings } from "lucide-react"
+import { Home, ScanLine, Settings, FolderOpen } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface NavigationProps {
-  currentPage: "home" | "scan" | "settings"
-  onNavigate: (page: "home" | "scan" | "settings") => void
+  currentPage: "home" | "scan" | "batch" | "settings"
+  onNavigate: (page: "home" | "scan" | "batch" | "settings") => void
 }
 
 export default function Navigation({ currentPage, onNavigate }: NavigationProps) {
   const navItems = [
     { id: "home" as const, icon: Home, label: "Home" },
     { id: "scan" as const, icon: ScanLine, label: "Scanner" },
+    { id: "batch" as const, icon: FolderOpen, label: "Batch" },
     { id: "settings" as const, icon: Settings, label: "Settings" },
   ]
 
