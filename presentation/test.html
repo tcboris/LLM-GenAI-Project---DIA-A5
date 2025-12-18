@@ -17,29 +17,25 @@
 body {
   background-color: #1a1a1a;
   display: grid;
-  gap: 20px;
-  grid-template-columns: 1fr;
   margin: 0;
   min-height: 100vh;
-  padding: 20px 0;
+  padding: 0;
   place-items: center;
 }
 
 .slide-container {
   align-items: flex-start;
   background-color: #0f172a; /* Dark Slate */
-  border-radius: 8px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
   font-family: 'Urbanist', sans-serif;
   gap: 40px;
-  height: 720px;
+  height: 100vh;
   justify-content: center;
   overflow: hidden;
   padding: 60px;
   position: relative;
-  width: 1280px;
+  width: 100vw;
 }
 
 /* Background Accents */
@@ -208,6 +204,7 @@ body {
   gap: 0;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   padding: 0;
+  height: 100vh;
 }
 
 .slide-container.bleed-image-layout > .content-container {
@@ -224,7 +221,7 @@ body {
 }
 
 .slide-container.bleed-image-layout img.bleed-image-side {
-  height: 720px;
+  height: 100vh;
   object-fit: cover;
   width: 100%;
   border-left: 1px solid #334155;
@@ -393,9 +390,11 @@ body {
     </style>
 </head>
 <body>
-
 <!-- Slide 1: Title -->
-<div class="slide-container" id="slide1">
+<div class="slide-container" id="slide1"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <div class="title-layout">
         <h1>Intelligent Document Processing <br><span>with Multimodal GenAI</span></h1>
         <p class="subtitle">Automating extraction from unstructured physical documents using LLMs and OCR.</p>
@@ -410,7 +409,10 @@ body {
 </div>
 
 <!-- Slide 2: Context / Problem -->
-<div class="slide-container bleed-image-layout" id="slide2">
+<div class="slide-container bleed-image-layout" id="slide2"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <div class="content-container">
         <h2 class="slide-title">The Data Bottleneck</h2>
         <div class="bullet-list">
@@ -428,7 +430,10 @@ body {
 </div>
 
 <!-- Slide 3: Challenges -->
-<div class="slide-container" id="slide3">
+<div class="slide-container" id="slide3"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <h2 class="slide-title">Technical Challenges</h2>
     <div class="content-area">
         <div class="tiled-content">
@@ -452,7 +457,10 @@ body {
 </div>
 
 <!-- Slide 4: Solution Overview -->
-<div class="slide-container" id="slide4">
+<div class="slide-container" id="slide4"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <div class="section-title-layout">
         <h2>Hybrid AI Pipeline</h2>
         <hr>
@@ -461,7 +469,10 @@ body {
 </div>
 
 <!-- Slide 5: Architecture -->
-<div class="slide-container bleed-image-layout" id="slide5">
+<div class="slide-container bleed-image-layout" id="slide5"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <div class="content-container">
         <h2 class="slide-title">Microservices Architecture</h2>
         <p>A containerized, decoupled system designed for local deployment via Docker.</p>
@@ -480,7 +491,10 @@ body {
 </div>
 
 <!-- Slide 6: The AI Pipeline -->
-<div class="slide-container" id="slide6">
+<div class="slide-container" id="slide6"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <h2 class="slide-title">The Extraction Pipeline</h2>
     <div class="content-area">
         <div class="two-column tiled">
@@ -497,7 +511,10 @@ body {
 </div>
 
 <!-- Slide 7: Engineering Challenges -->
-<div class="slide-container" id="slide7">
+<div class="slide-container" id="slide7"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <h2 class="slide-title">Key Engineering Hurdles</h2>
     <div class="content-area">
         <div class="two-column">
@@ -537,7 +554,10 @@ body {
 
 
 <!-- Slide 9: Validation Results -->
-<div class="slide-container" id="slide9">
+<div class="slide-container" id="slide9"  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <h2 class="slide-title">Functional Validation</h2>
     <div class="content-area">
         <div class="table-layout">
@@ -577,7 +597,10 @@ body {
 </div>
 
 <!-- Slide 10: Roadmap -->
-<div class="slide-container" id="slide10">
+<div class="slide-container" id="slide10"   style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  ">
     <h2 class="slide-title">Future Roadmap</h2>
     <div class="content-area">
         <div class="timeline-layout">
@@ -615,6 +638,7 @@ body {
 >
     <div class="content-overlay" style="
         height: 100%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -649,8 +673,5 @@ body {
         </p>
     </div>
 </div>
-
-
 </body>
 </html>
-```
