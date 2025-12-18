@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Document Processing - Project Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* 1. THE SETUP */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1a1a1a;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 0;
+  place-items: center;
+}
+
+.slide-container {
+  align-items: flex-start;
+  background-color: #0f172a; /* Dark Slate */
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  font-family: 'Urbanist', sans-serif;
+  gap: 40px;
+  height: 720px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  width: 1280px;
+}
+
+/* Background Accents */
+.slide-container::before {
+  background: radial-gradient(circle at 10% 10%, rgba(34, 197, 94, 0.15), transparent 40%), 
+              radial-gradient(circle at 90% 90%, rgba(59, 130, 246, 0.15), transparent 40%);
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+
+.slide-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* 2. TYPOGRAPHY */
+.slide-container h1,
+.slide-container h2,
+.slide-container h3 {
+  color: #f8fafc;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.slide-container h1 {
+  font-size: 72px;
+  letter-spacing: -1px;
+}
+
+.slide-container h1 span {
+  color: #4ade80; /* Green Accent */
+}
+
+.slide-container .slide-title {
+  font-size: 48px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #f1f5f9;
+  border-left: 5px solid #4ade80;
+  padding-left: 20px;
+  width: 100%;
+}
+
+.slide-container h3 {
+  font-size: 28px;
+  color: #4ade80;
+  margin-bottom: 15px;
+}
+
+.slide-container p,
+.slide-container li,
+.slide-container td,
+.slide-container th {
+  color: #cbd5e1; /* Light Gray text */
+  font-size: 20px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.slide-container .subtitle {
+  color: #94a3b8;
+  font-size: 24px;
+  margin-top: 20px;
+  font-weight: 300;
+}
+
+.content-area {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+}
+
+/* 3. LAYOUTS */
+
+/* Title Layout */
+.title-layout {
+  text-align: left;
+  max-width: 80%;
+}
+
+.title-layout hr {
+    border: 0;
+    height: 1px;
+    background: #334155;
+    margin: 40px 0;
+    width: 100%;
+}
+
+.team-info {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.team-info div {
+    font-size: 18px;
+    color: #94a3b8;
+}
+
+/* Section Title */
+.section-title-layout {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+.section-title-layout h2 { font-size: 80px; letter-spacing: -2px; }
+.section-title-layout hr { width: 150px; border-color: #4ade80; margin: 30px 0; border-width: 3px; }
+
+/* Two Column */
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.two-column.tiled {
+    align-items: stretch;
+}
+
+.two-column.tiled > div {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 40px;
+}
+
+.image-wrapper {
+  border-radius: 16px;
+  height: 400px;
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+}
+
+.image-wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.two-column .image-wrapper img {
+    object-fit: contain; /* Specific for charts/screenshots */
+}
+
+/* Bleed Image Right */
+.slide-container.bleed-image-layout {
+  align-items: start;
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding: 0;
+}
+
+.slide-container.bleed-image-layout > .content-container {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.slide-container.bleed-image-layout > .image-container {
+  height: 100%;
+  width: 100%;
+}
+
+.slide-container.bleed-image-layout img.bleed-image-side {
+  height: 720px;
+  object-fit: cover;
+  width: 100%;
+  border-left: 1px solid #334155;
+}
+
+/* Tiled Content */
+.tiled-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+  align-items: stretch;
+}
+
+.tile {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid #334155;
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.2s;
+}
+
+.tile .icon {
+  font-size: 32px;
+  color: #4ade80;
+  margin-bottom: 20px;
+  background: rgba(74, 222, 128, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+}
+
+/* Bullet List */
+.bullet-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bullet-list li {
+  margin-bottom: 25px;
+  padding-left: 40px;
+  position: relative;
+}
+
+.bullet-list li::before {
+  content: '\f058'; /* FontAwesome Check */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  left: 0;
+  color: #4ade80;
+  font-size: 24px;
+  top: 2px;
+}
+
+.bullet-list li strong {
+    color: #f8fafc;
+    font-weight: 600;
+}
+
+/* Table */
+.table-layout table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table-layout th, .table-layout td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #334155;
+}
+
+.table-layout th {
+    color: #4ade80;
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 2px solid #4ade80;
+}
+
+.table-layout tr:last-child td {
+    border-bottom: none;
+}
+
+/* Timeline */
+.timeline-layout {
+  align-items: stretch;
+  display: flex;
+  height: stretch;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.timeline-layout .timeline-line {
+  background-color: #334155;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-2px);
+  width: 100%;
+  z-index: 0;
+}
+
+.timeline-item {
+  position: relative;
+  text-align: center;
+  width: 30%;
+  background: #0f172a;
+  z-index: 1;
+  padding: 0 10px;
+}
+
+.timeline-item::after {
+  background-color: #0f172a;
+  border: 4px solid #4ade80;
+  border-radius: 50%;
+  content: '';
+  height: 24px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+}
+
+.timeline-item h3 { font-size: 24px; margin-bottom: 10px; }
+.timeline-item p { font-size: 18px; }
+
+.timeline-item .content-wrapper {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.timeline-item:nth-child(even) .content-wrapper { bottom: 60%; }
+.timeline-item:nth-child(odd) .content-wrapper { top: 60%; }
+
+/* Full Background */
+.full-bg-image {
+    background-size: cover;
+    background-position: center;
+}
+
+.full-bg-image .content-overlay {
+    background: rgba(15, 23, 42, 0.85);
+    padding: 60px;
+    border-radius: 16px;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Q&A Image Slide */
+.qa-image-slide {
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    </style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide-container" id="slide1">
+    <div class="title-layout">
+        <h1>Intelligent Document Processing <br><span>with Multimodal GenAI</span></h1>
+        <p class="subtitle">Automating extraction from unstructured physical documents using LLMs and OCR.</p>
+        <hr>
+        <div class="team-info">
+            <div><strong>Group DIA 3</strong></div>
+            <div>Charles Perier</div>
+            <div>Antoine Richard</div>
+            <div>Romain Paupe</div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 2: Context / Problem -->
+<div class="slide-container bleed-image-layout" id="slide2">
+    <div class="content-container">
+        <h2 class="slide-title">The Data Bottleneck</h2>
+        <div class="bullet-list">
+            <ul>
+                <li><strong>Manual Entry:</strong> Enterprises process massive volumes of paper invoices and inventory logs by hand.</li>
+                <li><strong>High Cost:</strong> Human transcription is time-consuming and expensive.</li>
+                <li><strong>Error Prone:</strong> Manual data entry leads to inconsistencies in accounting and inventory systems.</li>
+                <li><strong>Objective:</strong> Democratize IDP by transforming raw images into structured JSON automatically.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="bleed-image-side" src="pawel-czerwinski-kyo00lYIkLQ-unsplash.jpg" alt="Messy stack of paperwork">
+    </div>
+</div>
+
+<!-- Slide 3: Challenges -->
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Technical Challenges</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-eye-slash"></i></div>
+                <h3>OCR Limitations</h3>
+                <p>Variability in image quality (blur, skew) and non-standard layouts (curved wine labels) challenge traditional OCR engines.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-file-code"></i></div>
+                <h3>The Semantic Gap</h3>
+                <p>Raw text lacks structure. "TOTAL 125.50" is just a string. Converting this to <code>{amount: 125.50}</code> via Regex is brittle.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-server"></i></div>
+                <h3>Architecture</h3>
+                <p>Managing CORS policies and state for sequential batch processing in a split Frontend/Backend architecture.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 4: Solution Overview -->
+<div class="slide-container" id="slide4">
+    <div class="section-title-layout">
+        <h2>Hybrid AI Pipeline</h2>
+        <hr>
+        <p>Combining <strong>EasyOCR</strong> for raw detection with <strong>Google Gemini</strong> for semantic understanding.</p>
+    </div>
+</div>
+
+<!-- Slide 5: Architecture -->
+<div class="slide-container bleed-image-layout" id="slide5">
+    <div class="content-container">
+        <h2 class="slide-title">Microservices Architecture</h2>
+        <p>A containerized, decoupled system designed for local deployment via Docker.</p>
+        <div class="bullet-list" style="margin-top: 30px;">
+            <ul>
+                <li><strong>Frontend:</strong> Next.js 16 (App Router) with Radix UI.</li>
+                <li><strong>Proxy Layer:</strong> Next.js API Route to handle CORS and API keys securely.</li>
+                <li><strong>Backend:</strong> Python FastAPI serving EasyOCR and Gemini.</li>
+                <li><strong>Processing:</strong> Asynchronous sequential batch processing to manage load.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="image-container">
+        <img class="bleed-image-side" src="slide5.png" alt="Abstract network architecture diagram">
+    </div>
+</div>
+
+<!-- Slide 6: The AI Pipeline -->
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">The Extraction Pipeline</h2>
+    <div class="content-area">
+        <div class="two-column tiled">
+            <div>
+                <h3>1. Optical Character Recognition</h3>
+                <p>We utilize <strong>EasyOCR</strong> running on CPU (for portability). It handles the "Reading" phase, converting pixels into raw text strings. It supports French/English but is sensitive to noise.</p>
+            </div>
+            <div>
+                <h3>2. Semantic LLM Processing</h3>
+                <p>The raw text is fed into <strong>Gemini 2.5 Flash Lite</strong>. Using <em>Few-Shot Prompting</em>, the model classifies the doc (Invoice vs. Wine) and enforces a strict JSON schema output.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 7: Engineering Challenges -->
+<div class="slide-container" id="slide7">
+    <h2 class="slide-title">Key Engineering Hurdles</h2>
+    <div class="content-area">
+        <div class="two-column">
+             <div class="bullet-list">
+                <ul>
+                    <li><strong>CORS & Security:</strong> Browser security blocked direct Backend calls. We implemented a <em>Server-Side Proxy</em> pattern in Next.js to forward requests, keeping API keys hidden.</li>
+                    <li><strong>Batch Processing:</strong> Parallel requests crashed the server. We built a <em>Sequential Queue</em> in the frontend using React Hooks to process one file at a time.</li>
+                    <li><strong>Strict Typing:</strong> transitioning raw LLM output to strictly typed TypeScript interfaces required robust error handling and parsing logic.</li>
+                </ul>
+            </div>
+             <div class="image-wrapper">
+                <img src="slide7.png" alt="Coding environment" style="object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div
+  class="slide-container full-bg-image"
+  id="slide8"
+  style="
+    background-image: url('dompe.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  "
+>
+    <div class="content-overlay">
+        <h2 style="font-size: 80px; color: #fff; text-shadow: 0 4px 10px rgba(0,0,0,0.5);">
+            Live Demonstration
+        </h2>
+        <p style="color: #cbd5e1; font-size: 24px;">
+            Showcasing Single Upload, Batch Processing, and JSON Export.
+        </p>
+    </div>
+</div>
+
+
+<!-- Slide 9: Validation Results -->
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">Functional Validation</h2>
+    <div class="content-area">
+        <div class="table-layout">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Traditional Regex</th>
+                        <th>Our GenAI Approach</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Document Classification</strong></td>
+                        <td>Fragile (Keyword based)</td>
+                        <td><strong>Robust</strong> (Semantic understanding)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Layout Variation</strong></td>
+                        <td>Fails on new templates</td>
+                        <td><strong>Flexible</strong> (Contextual extraction)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Complex Fields</strong></td>
+                        <td>Difficult (e.g. Split addresses)</td>
+                        <td><strong>High Accuracy</strong> (Vendor/Address logic)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Deployment</strong></td>
+                        <td>Lightweight</td>
+                        <td>Requires Internet (Gemini API)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 10: Roadmap -->
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">Future Roadmap</h2>
+    <div class="content-area">
+        <div class="timeline-layout">
+            <div class="timeline-line"></div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>Short Term</h3>
+                    <p>Integrate <strong>PyPDF2</strong> for multi-page support and OpenCV preprocessing for deskewing.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>Mid Term</h3>
+                    <p>Implement <strong>Local LLM (Ollama)</strong> to remove cloud dependency and ensure data privacy.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="content-wrapper">
+                    <h3>Long Term</h3>
+                    <p>Develop <strong>Active Learning</strong> loop to retrain models based on user corrections.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Slide 11: Q&A -->
+<div
+  class="slide-container"
+  id="slide11"
+  style="
+    background: linear-gradient(180deg, #0f172a 0%, #020617 100%);
+    height: 100vh;
+  "
+>
+    <div class="content-overlay" style="
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 40px;
+    ">
+        <h2 style="
+            font-size: 80px;
+            color: #ffffff;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+        ">
+            Thank You for Your Attention
+        </h2>
+
+        <p style="
+            font-size: 30px;
+            color: #cbd5e1;
+            margin-bottom: 40px;
+        ">
+            Any questions?
+        </p>
+
+        <p style="
+            font-size: 20px;
+            color: #94a3b8;
+            max-width: 900px;
+        ">
+            Single upload, batch processing, and structured JSON export —  
+            built for reliability, scalability, and real-world use.
+        </p>
+    </div>
+</div>
+
+
+</body>
+</html>
+```
