@@ -302,7 +302,7 @@ For processing multiple documents at once:
 
 #### Single File Mode
 
-After processing (typically 2-5 seconds), you'll see:
+After processing (typically 7 to 10 seconds), you'll see:
 
 - The original uploaded image for comparison
 - Extracted data in a clean, formatted layout
@@ -497,44 +497,6 @@ Analyzes an uploaded image and extracts structured data.
 
 ---
 
-## Development
-
-### Running Tests
-
-```bash
-# Frontend tests (if configured)
-npm test
-
-# Backend tests (if configured)
-cd pipeline_ocr
-pytest
-```
-
-### Building for Production
-
-#### Frontend
-
-```bash
-npm run build
-npm start
-```
-
-#### Backend
-
-The Docker image is production-ready. For deployment:
-
-1. Push the image to a container registry
-2. Deploy to your hosting platform (AWS ECS, Google Cloud Run, etc.)
-3. Set environment variables in your deployment configuration
-
----
-
 ## License
 
 This project is private and proprietary.
-
----
-
-## Support
-
-For issues, questions, or contributions, please contact the development team or open an issue in the repository.

@@ -1,10 +1,12 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { Geist, Geist_Mono } from "next/font/google"
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _geist = Geist({ subsets: ["latin"] })
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {

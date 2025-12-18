@@ -115,7 +115,7 @@ export default function SettingsPage() {
           <div className="space-y-4 text-sm text-muted-foreground">
             <p className="leading-relaxed">
               AI Image Scanner uses advanced computer vision and natural language processing to extract structured data
-              from invoices and wine labels. The application is powered by Google's Gemini AI for accurate and reliable
+              from invoices and wine labels. The application is powered by Google&apos;s Gemini AI for accurate and reliable
               data extraction.
             </p>
             <div className="flex flex-wrap gap-2">
