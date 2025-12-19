@@ -2,7 +2,7 @@
 
 A modern web application that uses AI-powered OCR (Optical Character Recognition) and Google's Gemini AI to automatically extract and structure data from invoices and wine labels.
 
-Made by Antoine RICHARD (Antoine-92) and Charles PERIER (tcboris) as final project for ESILV 5th year subject "LLM & Gen AI".
+Made by Antoine RICHARD, Romain PAUPE and Charles PERIER as final project for ESILV 5th year subject "LLM & Gen AI".
 
 ## Table of Contents
 
